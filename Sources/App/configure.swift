@@ -10,6 +10,8 @@ public func configure(_ app: Application) async throws {
     
     app.migrations.add(CreateUsersTable())
     
+    try app.register(collection: UsersController())
+    
     
     try routes(app)
 }
