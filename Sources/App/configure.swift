@@ -2,6 +2,7 @@ import NIOSSL
 import Fluent
 import FluentPostgresDriver
 import Vapor
+import JWT
 
 // configures your application
 public func configure(_ app: Application) async throws {
@@ -12,6 +13,7 @@ public func configure(_ app: Application) async throws {
     
     try app.register(collection: UsersController())
     
+    app.jwt.signers.use(.hs256(key: "SECRET KEY"))
     
     try routes(app)
 }
