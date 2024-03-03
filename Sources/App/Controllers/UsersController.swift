@@ -1,5 +1,6 @@
 import Fluent
 import Vapor
+import GettingThingsDoneSharedDTO
 
 struct UsersController: RouteCollection {
     
@@ -10,7 +11,7 @@ struct UsersController: RouteCollection {
 
     }
 
-    func register(req: Request) async throws -> RegisterResponseDTO {
+    func register(req: Request) async throws -> RegistrationResponseDTO {
         
         //validate the user
         try User.validate(content: req)
@@ -30,7 +31,7 @@ struct UsersController: RouteCollection {
         //save the user to database
         try await user.save(on: req.db)
         
-        return RegisterResponseDTO(error: false)
+        return RegistrationResponseDTO(error: false)
         
     }
     
